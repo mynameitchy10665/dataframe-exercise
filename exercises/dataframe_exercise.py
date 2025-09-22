@@ -68,3 +68,21 @@ df = pd.concat([df, new_row_df], ignore_index=True)
 df["Total"] = df["Quantity"] * df["Price"]
 
 print(df.tail(3))
+
+df.loc[df["Product"]=="Mouse", "Price"] = 30
+
+df["Total"] = df["Quantity"] * df["Price"]
+
+print(df[df["Product"]=="Mouse"])
+
+df = df.drop(columns=["Discount"])
+
+df = df.drop(columns=["FinalTotal"])
+
+print(df.head())
+
+df = df.drop(df[df["OrderID"]==1010].index, axis = 0)
+
+df = df.drop(index = 0)
+
+print("New Shape: ", df.shape)
