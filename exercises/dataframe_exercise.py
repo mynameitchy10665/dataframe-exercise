@@ -86,3 +86,40 @@ df = df.drop(df[df["OrderID"]==1010].index, axis = 0)
 df = df.drop(index = 0)
 
 print("New Shape: ", df.shape)
+
+result1 = df[(df["Category"] == "Electronics") & (df["Quantity"] >= 3)]
+print(result1)
+
+result2 = df[df["Price"] > 500]
+print(result2)
+
+
+print("North orders:", df[df["Region"] == "North"].count)
+
+west_sales = df[df["Region"] == "West"]
+print(west_sales)
+
+
+alice_sales = df[df["Customer"] == "Alice"]
+print(alice_sales)
+
+
+subset_sales = df[df["Product"].isin(["Laptop", "Printer"])]
+print(subset_sales)
+
+
+df.loc[df["Category"] == "Furniture", "Price"] = (df.loc[df["Category"] == "Furniture", "Price"] * 1.10).astype(float)
+
+df["Total"] = df["Quantity"] * df["Price"]
+
+print(df[df["Category"] == "Furniture"])
+
+sorted_df = df.sort_values(by="Total", ascending=False)
+print(sorted_df.head())
+
+
+print(sorted_df.head())
+
+multi_sort = df.sort_values(by=["Region", "Customer"])
+print(multi_sort.head())
+
