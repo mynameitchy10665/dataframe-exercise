@@ -40,6 +40,18 @@ print("Columns: ", df.shape[1])
 
 print("Columns:", df.columns)
 
+import numpy as np
+
+df["Discount"] = np.where(df["Quantity"] >= 5, df["Total"] * 0.10, 0)
+print(df.head())
+
+
+df["FinalTotal"] = df["Total"] - df["Discount"]
+print(df.head())
+
+
+print(df[["OrderID", "Product", "Total", "Discount", "FinalTotal"]].head())
+
 new_row = {
     "OrderID": 1021,
     "Product": "Tablet",
